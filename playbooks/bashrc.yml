@@ -1,0 +1,9 @@
+---
+# List of tasks to include inside another playbook.  Can't include "tasks:" here!
+- name: Set the root bashrc
+  become_method: sudo
+  become: yes
+  copy: src=../assets/dotbashrc_root dest=/root/.bashrc owner=root group=root mode=0600
+
+- name: Set the vagrant user bashrc
+  copy: src=../assets/dotbashrc dest=/home/vagrant/.bashrc owner=vagrant group=vagrant mode=0600
