@@ -31,7 +31,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         a.limit = servers["name"]
 #        a.verbose = "v"
         a.host_key_checking = false
-        a.playbook = "playbooks/provision.yml"
+        a.playbook = "ansible/provision.yml"
       end
     end
   end

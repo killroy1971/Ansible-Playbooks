@@ -3,7 +3,7 @@
 - name: Set the root bashrc
 #  become_method: sudo
 #  become: yes
-  copy: src=../assets/dotbashrc_root dest=/root/.bashrc owner=root group=root mode=0600
+  copy: src=../files/dotbashrc_root dest=/root/.bashrc owner=root group=root mode=0600
 
 - name: Set the vagrant user bashrc
-  copy: src=../assets/dotbashrc dest=/home/vagrant/.bashrc owner=vagrant group=vagrant mode=0600
+  copy: src=../files/dotbashrc dest=/home/vagrant/.bashrc owner=vagrant group=vagrant mode=0600
