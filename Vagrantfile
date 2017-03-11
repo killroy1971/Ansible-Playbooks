@@ -9,13 +9,14 @@ VAGRANTFILE_API_VERSION = "2"
 require 'yaml'
  
 # Read YAML file with box details
-servers = YAML.load_file(File.join(File.dirname(__FILE__), 'machine_define.yaml'))
+machines = YAML.load_file(File.join(File.dirname(__FILE__), 'machine_define.yaml'))
  
 # Create boxes
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.ssh.insert_key = false
  
   # Iterate through entries in YAML file
-  servers.each do |servers|
+  machines.each do |servers|
     config.vm.define servers["name"] do |srv|
       srv.vm.box = servers["box"]
       srv.vm.box_check_update = true
@@ -28,7 +29,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
       srv.vm.provision "ansible" do |a|
         a.limit = servers["name"]
-        a.verbose = "v"
+#        a.verbose = "v"
+        a.host_key_checking = false
         a.playbook = "playbooks/provision.yml"
       end
     end

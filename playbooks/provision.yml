@@ -3,15 +3,12 @@
   become: true
 
   tasks:
-    - name: Install libselinux-python
-      yum: name=libselinux-python state=present
+    - include: ./host_setup.yml
 
     - include: ./google_dns.yml
 
-    - name: Ensure Chrony is installed.
-      yum: name=chrony state=present
-
-    - name: Ensure chrony service is running.
-      service: name=chronyd state=started enabled=yes
+    - include: ./chrony.yml
 
     - include: ./bashrc.yml
+
+    - include: ./sshd_config.yml

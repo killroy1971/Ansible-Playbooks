@@ -1,0 +1,6 @@
+---
+# This asnible task sets up an ansible client
+
+- name: Install libselinux-python
+  yum: name=libselinux-python state=present
+

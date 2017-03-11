@@ -1,7 +1,0 @@
----
-- hosts: local
-
-  tasks:
-
-    - name: Set the ANBILE_HOSTS enviornment varriable.
-      shell: "export ANSIBLE_HOSTS=assets/ansible.hosts"

@@ -1,0 +1,35 @@
+---
+#This playbook will change the system's sshd_config file and restat the sshd daemon
+
+- name: Disallow root login
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '#PermitRootLogin.*yes'
+    line: "PermitRootLogin no"
+
+- name: Delay ssh compression
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '#Compression.*delayed'
+    line: "Compression delayed"
+
+- name: Set GraceLogin time to 5 minutes
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '#LoginGraceTime.*2m'
+    line: 'LoginGraceTime 5m'
+
+- name: Enalbe loging banner to use /etc/issue
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '#Banner.*none'
+    line: "Banner /etc/issue"
+
+- name: Restart sshd daemon - systemd
+  systemd: state=restarted daemon_reload=yes name=sshd
+  when: ansible_service_mgr == "systemd"
+
+- name: Restart sshd daemon - upstart (CENTOS/RHEL6)
+  service: state=restarted name=sshd
+  when: ansible_service_mgr == "upstart"
+

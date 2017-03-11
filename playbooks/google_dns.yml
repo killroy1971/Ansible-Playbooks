@@ -1,8 +1,12 @@
 ---
 # This task list adds Google DNS to /etc/resolv.conf
 - name: Add Google DNS to /etc/resolv.conf
-  become: true
   blockinfile:
     dest: /etc/resolv.conf
     insertafter: "search gshome.lan"
     block: "nameserver 8.8.8.8"
+
+- name: Add Google DNS to default network interface
+  blockinfile:
+    dest: /etc/sysconfig/network-scripts/ifcfg-{{ ansible_default_ipv4.interface }}
+    content: "DNS1=8.8.8.8"
