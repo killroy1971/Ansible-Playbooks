@@ -1,0 +1,11 @@
+---
+packages_list:
+  - ansible
+  - ansible-lint
+
+EPEL7:
+  - "https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
+
+EPEL6:
+  - "https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm"
+

@@ -1,0 +1,24 @@
+---
+# This playbook will set up the ansible user account
+- name: Create ansible user if it doesn't exist
+    user: 
+      name: ansible 
+      group: ansible
+      shell: /bin/bash
+      comment: "Ansible User Account"
+      state: present
+
+- name: Copy ansible ssh key to authorized_keys
+    authorized_key:
+      user: ansible
+      state: present
+      key: "{{ lookup('file','../files/ansible.pub') }}"
+
+- name: Create ansible's sudoers file
+    copy:
+      src: ../files/ansible.sudoers
+      dest: /etc/sudoers.d/ansible
+      owner: root
+      group: root
+      mode: 0440
+

@@ -1,9 +1,0 @@
----
-# Install, enable, and start chronyd
-
-- name: Ensure Chrony is installed.
-  yum: name=chrony state=present
-
-- name: Ensure chrony service is running.
-  service: name=chronyd state=started enabled=yes
-

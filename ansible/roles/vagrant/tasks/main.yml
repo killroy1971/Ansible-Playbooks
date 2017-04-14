@@ -1,0 +1,4 @@
+---
+- include: host_setup.yml
+- include: google_dns.yml
+- include: sshd_config.yml

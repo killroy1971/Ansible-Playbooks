@@ -1,0 +1,9 @@
+- name: Add EPEL (RHEL/CentOS 7) Repository
+  yum: name={{ EPEL7 }} state=present
+  with_items: "{{ EPEL7 }}"
+  when: ( ansible_distribution == "CentOS" ) or ( ansible_distribution == "RHEL" ) and ( ansible_distribution_major_version == "7" )
+
+- name: Add EPEL (RHEL/CentOS 6) Repository
+  yum: name={{ EPEL6 }} state=present
+  with_items: "{{ EPEL6 }}"
+  when: ( ansible_distribution == "CentOS" ) or ( ansible_distribution == "RHEL" ) and ( ansible_distribution_major_version == "6" )
