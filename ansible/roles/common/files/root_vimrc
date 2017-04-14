@@ -38,7 +38,6 @@ set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-backup/
 set undodir=~/.vim-backup/
 set backup
-endif
 set writebackup
 
 " In many terminal emulators the mouse works just fine, thus enable it.
